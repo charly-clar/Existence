@@ -1,18 +1,19 @@
-const {Blockchain, Transactions} = require('./blockchain');
+const { Blockchain, Transactions } = require('.blockchain');
 const EC = require('elliptic').ec;
 const ec = new EC('secp256k1');
 
+const myKey = ec.keyFromPrivate('33d41330635529846e853a02b2a321d6c1c773887388e5bcecc34b3a40ec74e9');
+const myWalletAddress = myKey.getPublic('hex');
+
 
 let savjeeCoin = new Blockchain();
-savjeeCoin.createTransaction( new Transactions('address1', 'address2', 100 ));
-savjeeCoin.createTransaction( new Transactions('address1', 'address2', 50 ));
+
+const tx1 = new Transactions(myWalletAddress, 'public key goes here', 10);
+tx1.signTransaction(myKey);
+savjeeCoin.addTransaction(tx1);
+
 
 console.log('\nStarting the miner... ');
-savjeeCoin.minePendingTransactions('xaviers-address');
+savjeeCoin.minePendingTransactions(myWalletAddress);
 
-console.log('\nBalance of xavier is', savjeeCoin.getBalanceAddress('xaviers-address'));
-
-console.log('\nStarting the miner again... ');
-savjeeCoin.minePendingTransactions('xaviers-address');
-
-console.log('\nBalance of xavier is', savjeeCoin.getBalanceAddress('xaviers-address'));
+console.log('\nBalance of xavier is', savjeeCoin.getBalanceAddress(myWalletAddress));
