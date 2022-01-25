@@ -1,2 +1,2 @@
 # Existence
-Blockchain exchange plateforme created with JS
+Blockchain exchange plateforme created with Angular JS
