@@ -16,4 +16,5 @@ savjeeCoin.addTransaction(tx1);
 console.log('\nStarting the miner... ');
 savjeeCoin.minePendingTransactions(myWalletAddress);
 
-console.log('\nBalance of xavier is', savjeeCoin.getBalanceAddress(myWalletAddress));
+console.log('\nBalance of xavier is', savjeeCoin.getBalanceOfAddress(myWalletAddress));
+console.log('Is chain is valid ?', savjeeCoin.isChainValid());
